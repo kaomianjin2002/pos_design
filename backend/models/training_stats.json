@@ -1,0 +1,48 @@
+{
+  "dataset_paths": [
+    "/workspace/pos_design/backend/data/processed/chinese_sample.conll",
+    "/workspace/pos_design/backend/data/processed/english_sample.conll"
+  ],
+  "train_sentences": 4,
+  "valid_sentences": 1,
+  "test_sentences": 1,
+  "vocab_size": 2,
+  "tagset": [
+    "DT",
+    "NN",
+    "NNP",
+    "RB",
+    "VBZ",
+    "VV"
+  ],
+  "fit_summary": {
+    "iterations": 4,
+    "accuracy_history": [
+      0.42857142857142855,
+      0.7857142857142857,
+      1.0,
+      1.0
+    ]
+  },
+  "valid_accuracy": 0.4,
+  "test_accuracy": 0.0,
+  "baseline_accuracy": 0.25,
+  "confusion_matrix": {
+    "NNS": {
+      "VBZ": 1
+    },
+    "VBP": {
+      "VBZ": 1
+    },
+    "NN": {
+      "RB": 1
+    },
+    "RB": {
+      "VBZ": 1
+    }
+  },
+  "tag_distribution": {
+    "VBZ": 3,
+    "RB": 1
+  }
+}

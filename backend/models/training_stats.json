@@ -1,0 +1,79 @@
+{
+  "dataset_paths": [
+    "/workspace/pos_design/backend/data/processed/chinese_sample.conll",
+    "/workspace/pos_design/backend/data/processed/english_sample.conll"
+  ],
+  "model_name": "结构化平均感知机",
+  "baseline_model_name": "最高频词性基线",
+  "train_sentences": 4,
+  "valid_sentences": 1,
+  "test_sentences": 1,
+  "vocab_size": 2,
+  "tagset": [
+    "专有名词",
+    "副词",
+    "动词",
+    "名词",
+    "第三人称单数动词",
+    "限定词"
+  ],
+  "tagset_zh": [
+    "专有名词",
+    "副词",
+    "动词",
+    "名词",
+    "第三人称单数动词",
+    "限定词"
+  ],
+  "fit_summary": {
+    "iterations": 3,
+    "accuracy_history": [
+      0.35714285714285715,
+      0.7857142857142857,
+      0.8571428571428571
+    ]
+  },
+  "valid_accuracy": 0.4,
+  "test_accuracy": 0.25,
+  "baseline_accuracy": 0.25,
+  "confusion_matrix": {
+    "复数名词": {
+      "限定词": 1
+    },
+    "动词原形": {
+      "名词": 1
+    },
+    "名词": {
+      "第三人称单数动词": 1
+    },
+    "副词": {
+      "副词": 1
+    }
+  },
+  "confusion_matrix_zh": {
+    "复数名词": {
+      "限定词": 1
+    },
+    "动词原形": {
+      "名词": 1
+    },
+    "名词": {
+      "第三人称单数动词": 1
+    },
+    "副词": {
+      "副词": 1
+    }
+  },
+  "tag_distribution": {
+    "限定词": 1,
+    "名词": 1,
+    "第三人称单数动词": 1,
+    "副词": 1
+  },
+  "tag_distribution_zh": {
+    "限定词": 1,
+    "名词": 1,
+    "第三人称单数动词": 1,
+    "副词": 1
+  }
+}

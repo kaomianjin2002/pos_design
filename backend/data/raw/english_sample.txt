@@ -1,0 +1,3 @@
+The/限定词 cat/名词 sits/第三人称单数动词 quietly/副词
+A/限定词 student/名词 studies/第三人称单数动词 NLP/专有名词
+Models/复数名词 improve/动词原形 accuracy/名词 steadily/副词

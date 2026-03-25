@@ -28,32 +28,78 @@ PTB_PATTERN = re.compile(r"\(([^()\s]+)\s+([^()]+?)\)")
 CHINESE_CHAR_PATTERN = re.compile(r"[\u4e00-\u9fff]")
 
 POS_LABELS_ZH = {
+    # 名词类
     "NN": "名词",
-    "NNS": "复数名词",
-    "NNP": "专有名词",
-    "NNPS": "复数专有名词",
-    "NR": "专有名词",
-    "NT": "时间名词",
+    "NNS": "名词",
+    "NNP": "名词",
+    "NNPS": "名词",
+    "NR": "名词",
+    "NT": "名词",
+
+    # 动词类
+    "VB": "动词",
+    "VBP": "动词",
+    "VBZ": "动词",
+    "VBD": "动词",
+    "VBG": "动词",
+    "VBN": "动词",
     "VV": "动词",
-    "VC": "系动词",
-    "VE": "有字句动词",
-    "VA": "表语形容词",
-    "VB": "动词原形",
-    "VBP": "动词原形",
-    "VBZ": "第三人称单数动词",
-    "VBD": "动词过去式",
-    "VBG": "动名词",
-    "VBN": "过去分词",
+    "VC": "动词",
+    "VE": "动词",
+    "VA": "形容词",
+
+    # 形容词/副词
     "JJ": "形容词",
+    "JJR": "形容词",
+    "JJS": "形容词",
     "RB": "副词",
-    "DT": "限定词",
+    "RBR": "副词",
+    "RBS": "副词",
+
+    # 代词
     "PRP": "代词",
+    "PRP$": "代词",
+    "WP": "代词",
+    "WP$": "代词",
+
+    # 介词/连词
     "IN": "介词",
+    "TO": "介词",
     "CC": "连词",
+
+    # 其他常见词类
+    "DT": "限定词",
+    "PDT": "限定词",
+    "WDT": "限定词",
     "CD": "数词",
     "M": "量词",
+    "UH": "叹词",
     "PU": "标点",
+    "SYM": "符号",
 }
+
+
+def normalize_pos_tag(tag: str) -> str:
+    """将英文细粒度词性统一映射为中文常见词类。"""
+    if not tag:
+        return "未知"
+    if CHINESE_CHAR_PATTERN.search(tag):
+        return tag
+    normalized = POS_LABELS_ZH.get(tag)
+    if normalized:
+        return normalized
+    upper = tag.upper()
+    if upper.startswith("NN"):
+        return "名词"
+    if upper.startswith("VB"):
+        return "动词"
+    if upper.startswith("JJ"):
+        return "形容词"
+    if upper.startswith("RB"):
+        return "副词"
+    if upper.startswith("PRP") or upper.startswith("WP"):
+        return "代词"
+    return f"未映射词性（{tag}）"
 
 MODEL_NAMES_ZH = {
     "structured_perceptron": "结构化平均感知机",
@@ -62,9 +108,7 @@ MODEL_NAMES_ZH = {
 
 
 def tag_to_chinese(tag: str) -> str:
-    if any("一" <= char <= "鿿" for char in tag):
-        return tag
-    return POS_LABELS_ZH.get(tag, f"未映射词性（{tag}）")
+    return normalize_pos_tag(tag)
 
 
 def tags_to_chinese(tags: Sequence[str]) -> list[str]:
@@ -216,7 +260,9 @@ def load_conll_sentences(path: str | Path, min_freq: int = 1) -> list[list[dict[
         for token in sentence:
             token["normalized"] = normalize_token(token["form"])
             token["normalized_rare"] = token["normalized"] if token_counter[token["form"]] >= min_freq else "<UNK>"
-            token["tag"] = token["upos"] if token["upos"] != "_" else token["xpos"]
+            raw_tag = token["upos"] if token["upos"] != "_" else token["xpos"]
+            token["tag_raw"] = raw_tag
+            token["tag"] = normalize_pos_tag(raw_tag)
     return sentences
 
 

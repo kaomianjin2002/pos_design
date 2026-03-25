@@ -61,3 +61,16 @@ def test_train_predict_stats_flow():
     with urlopen(f"http://127.0.0.1:{port}/stats") as response:
         stats_payload = json.loads(response.read().decode("utf-8"))
     assert stats_payload["vocab_size"] >= 1
+
+
+def test_english_fine_tags_are_coarsened(tmp_path: Path):
+    sample = tmp_path / "fine.conll"
+    sample.write_text(
+        "1\tModels\t_\tNNS\tNNS\t_\t_\t_\t_\t_\n"
+        "2\timproves\t_\tVBZ\tVBZ\t_\t_\t_\t_\t_\n"
+        "3\tquickly\t_\tRB\tRB\t_\t_\t_\t_\t_\n",
+        encoding="utf-8",
+    )
+    sentences = load_conll_sentences(sample)
+    tags = [token["tag"] for token in sentences[0]]
+    assert tags == ["名词", "动词", "副词"]

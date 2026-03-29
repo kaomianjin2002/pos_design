@@ -1,0 +1,3 @@
+The/DT cat/NN sits/VBZ quietly/RB
+A/DT student/NN studies/VBZ NLP/NNP
+Models/NNS improve/VBP accuracy/NN steadily/RB

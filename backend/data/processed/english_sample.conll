@@ -1,0 +1,14 @@
+1	The	_	DT	DT	_	_	_	_	_
+2	cat	_	NN	NN	_	_	_	_	_
+3	sits	_	VBZ	VBZ	_	_	_	_	_
+4	quietly	_	RB	RB	_	_	_	_	_
+
+1	A	_	DT	DT	_	_	_	_	_
+2	student	_	NN	NN	_	_	_	_	_
+3	studies	_	VBZ	VBZ	_	_	_	_	_
+4	NLP	_	NNP	NNP	_	_	_	_	_
+
+1	Models	_	NNS	NNS	_	_	_	_	_
+2	improve	_	VBP	VBP	_	_	_	_	_
+3	accuracy	_	NN	NN	_	_	_	_	_
+4	steadily	_	RB	RB	_	_	_	_	_

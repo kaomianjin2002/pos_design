@@ -1,0 +1,51 @@
+{
+  "dataset_paths": [
+    "/workspace/pos_design/backend/data/processed/chinese_sample.conll",
+    "/workspace/pos_design/backend/data/processed/english_sample.conll"
+  ],
+  "model_name": "结构化平均感知机",
+  "baseline_model_name": "最高频词性基线",
+  "train_sentences": 4,
+  "valid_sentences": 1,
+  "test_sentences": 1,
+  "vocab_size": 2,
+  "tagset": [
+    "DT",
+    "NN",
+    "NNP",
+    "RB",
+    "VBZ",
+    "n",
+    "v"
+  ],
+  "tagset_zh": [
+    "限定词",
+    "单数名词",
+    "单数专有名词",
+    "副词",
+    "第三人称单数现在时动词",
+    "名词",
+    "动词"
+  ],
+  "fit_summary": {
+    "iterations": 3,
+    "accuracy_history": [
+      0.35714285714285715,
+      0.8571428571428571,
+      1.0
+    ]
+  },
+  "valid_accuracy": 0.2,
+  "test_accuracy": 0.25,
+  "baseline_accuracy": 0.0,
+  "tag_distribution": {
+    "RB": 2,
+    "VBZ": 1,
+    "NN": 1
+  },
+  "tag_distribution_zh": {
+    "副词": 2,
+    "第三人称单数现在时动词": 1,
+    "单数名词": 1
+  }
+}
